@@ -2,6 +2,8 @@
 
 Custom nodes for ComfyUI to integrate with OpenAI API (local supported), providing chat completion capabilities with support for images.
 
+![Screenshot](assets/node_preview.png)
+
 ## Features
 
 - **OpenAI Client Node**: Authenticate with OpenAI API using API key and optional custom base URL
