@@ -1,0 +1,17 @@
+[project]
+name = "comfyui-sg-openai-client"
+description = "ComfyUI custom nodes for OpenAI API integration (local supported) with chat completion and image support."
+version = "1.0.0"
+license = { file = "LICENSE" }
+dependencies = []
+
+[tool.setuptools.dynamic]
+dependencies = { file = [ "requirements.txt" ] }
+
+[project.urls]
+Repository = "https://github.com/yourusername/comfyui-sg-openai-client"
+
+[tool.comfy]
+PublisherId = "sebagallo"
+DisplayName = "comfyui-sg-openai-client"
+Icon = "https://raw.githubusercontent.com/sebagallo/comfyui-sg-openai-client/master/assets/icon.png"
