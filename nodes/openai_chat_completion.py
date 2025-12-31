@@ -20,6 +20,10 @@ class OpenAIChatCompletionNode:
             }
         }
 
+    @classmethod
+    def VALIDATE_INPUTS(cls, model):
+        return True
+
     RETURN_TYPES = ("STRING",)
     FUNCTION = "generate_completion"
     CATEGORY = "OpenAI"

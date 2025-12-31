@@ -1,7 +1,7 @@
 [project]
 name = "comfyui-sg-openai-client"
 description = "ComfyUI custom nodes for OpenAI API integration (local supported) with chat completion and image support."
-version = "1.1.0"
+version = "1.1.1"
 license = { file = "LICENSE" }
 dependencies = []
 
