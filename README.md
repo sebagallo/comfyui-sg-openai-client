@@ -9,7 +9,7 @@ Custom nodes for ComfyUI to integrate with OpenAI API (local supported), providi
 - **OpenAI Client Node**: Authenticate with OpenAI API using API key and optional custom base URL. Supports OpenAI-compatible providers (Ollama, OpenRouter, etc.).
 - **OpenAI Chat Completion Node**: Generate text completions with system/user prompts, vision support via image batches, and advanced sampling parameters.
 - **Vision Support**: Supports single images or image batches (via "Batch Images" node).
-- **Advanced Parameters**: Includes `top_k`, `min_p`, and custom JSON parameter injection.
+- **Advanced Parameters**: Includes `top_k`, `min_p`, `seed`, and custom JSON parameter injection.
 
 ## Installation
 
@@ -45,6 +45,7 @@ Custom nodes for ComfyUI to integrate with OpenAI API (local supported), providi
   - `max_tokens`: Maximum tokens to generate (1-32768, default 1000).
   - `frequency_penalty`: Penalize frequency (-2.0-2.0, default 0.0).
   - `presence_penalty`: Penalize presence (-2.0-2.0, default 0.0).
+  - `seed` (optional): Set an integer seed for deterministic results (mostly).
   - `extra_parameters`: Custom JSON string for any additional provider-specific parameters (e.g., `{"logit_bias": {...}}`).
 - **Output**: Generated completion text.
 

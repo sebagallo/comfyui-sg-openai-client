@@ -27,6 +27,7 @@ class OpenAIChatCompletionNode(IO.ComfyNode):
                 IO.Int.Input("max_tokens", default=1000, min=1, max=32768, optional=True, tooltip="The maximum number of tokens to generate in the completion."),
                 IO.Float.Input("frequency_penalty", default=0.0, min=-2.0, max=2.0, step=0.01, optional=True, tooltip="Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim."),
                 IO.Float.Input("presence_penalty", default=0.0, min=-2.0, max=2.0, step=0.01, optional=True, tooltip="Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics."),
+                IO.Int.Input("seed", default=-1, min=-1, max=0xffffffffffffffff, optional=True, extra_dict={"control_after_generate": True}, tooltip="If specified, our system will make a best effort to sample deterministically. Use -1 for random (default behavior)."),
                 IO.String.Input("extra_parameters", default="", multiline=True, optional=True, tooltip="Custom JSON string for any additional parameters to send to the API (e.g. {'logit_bias': {...}})."),
             ],
             outputs=[
@@ -49,6 +50,7 @@ class OpenAIChatCompletionNode(IO.ComfyNode):
         max_tokens: int | None = None,
         frequency_penalty: float | None = None,
         presence_penalty: float | None = None,
+        seed: int | None = None,
         extra_parameters: str = ""
     ) -> IO.NodeOutput:
         openai_client = client["client"]
@@ -83,6 +85,7 @@ class OpenAIChatCompletionNode(IO.ComfyNode):
         if max_tokens is not None: api_kwargs["max_tokens"] = max_tokens
         if frequency_penalty is not None: api_kwargs["frequency_penalty"] = frequency_penalty
         if presence_penalty is not None: api_kwargs["presence_penalty"] = presence_penalty
+        if seed is not None and seed != -1: api_kwargs["seed"] = seed
 
         # Merge extra parameters from JSON if provided
         if extra_parameters.strip():
