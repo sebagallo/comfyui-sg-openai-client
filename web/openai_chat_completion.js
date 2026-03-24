@@ -10,7 +10,7 @@ app.registerExtension({
 
                 const getClientInputNode = () => {
                     const clientInput = node.inputs.find(i => i.name === "client");
-                    if (clientInput && clientInput.link) {
+                    if (clientInput && clientInput.link && node.graph) {
                         return node.graph.getNodeById(node.graph.getLink(clientInput.link)?.origin_id);
                     }
                     return null;
