@@ -1,5 +1,6 @@
 import torch
 import json
+import sys
 from .utils import image_to_data_uri
 from comfy_api.latest import IO
 
@@ -27,7 +28,7 @@ class OpenAIChatCompletionNode(IO.ComfyNode):
                 IO.Int.Input("max_tokens", default=1000, min=1, max=32768, optional=True, tooltip="The maximum number of tokens to generate in the completion."),
                 IO.Float.Input("frequency_penalty", default=0.0, min=-2.0, max=2.0, step=0.01, optional=True, tooltip="Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim."),
                 IO.Float.Input("presence_penalty", default=0.0, min=-2.0, max=2.0, step=0.01, optional=True, tooltip="Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics."),
-                IO.Int.Input("seed", default=-1, min=-1, max=0xffffffffffffffff, optional=True, extra_dict={"control_after_generate": True}, tooltip="If specified, our system will make a best effort to sample deterministically. Use -1 for random (default behavior)."),
+                IO.Int.Input("seed", default=-1,min=-sys.maxsize, max=sys.maxsize, control_after_generate=True, tooltip="If specified, our system will make a best effort to sample deterministically. Use -1 for random (default behavior)."),
                 IO.String.Input("extra_parameters", default="", multiline=True, optional=True, tooltip="Custom JSON string for any additional parameters to send to the API (e.g. {'logit_bias': {...}})."),
             ],
             outputs=[
